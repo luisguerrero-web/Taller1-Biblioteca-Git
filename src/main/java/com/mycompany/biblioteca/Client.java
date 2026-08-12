@@ -8,13 +8,13 @@ package com.mycompany.biblioteca;
  *
  * @author Alejandro
  */
-public class Cliente {
+public class Client {
     private String email;
 
-    public Cliente() {
+    public Client() {
     }
 
-    public Cliente(String email) {
+    public Client(String email) {
         this.email = email;
     }
 
