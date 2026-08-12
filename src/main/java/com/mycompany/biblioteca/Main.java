@@ -6,7 +6,7 @@ import java.util.Scanner;
         
 public class Main {
     
-    static ArrayList<Client> clientes = new ArrayList<>();
+    static ArrayList<Client> clients = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
 
@@ -16,8 +16,11 @@ public class Main {
     
     void CREATE(){
         System.out.println("Registrar nuevo cliente");
-        System.out.println("Ingrese el id: ");
-        String id = sc.nextLine();
+        System.out.println("Ingrese el email: ");
+        String email = sc.nextLine();
+        
+        Client nuevoCliente = new Client(email);
+        clients.add(nuevoCliente);
     }
     
 }
