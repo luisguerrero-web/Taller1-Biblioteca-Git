@@ -2,24 +2,24 @@
 package com.mycompany.biblioteca;
 
 public class Material {
-    private String Code;
-    private String Tittle;
+    private String code;
+    private String tittle;
     private String yearPublic;
 
     public String getCode() {
-        return Code;
+        return code;
     }
 
     public void setCode(String Code) {
-        this.Code = Code;
+        this.code = Code;
     }
 
     public String getTittle() {
-        return Tittle;
+        return tittle;
     }
 
     public void setTittle(String Tittle) {
-        this.Tittle = Tittle;
+        this.tittle = Tittle;
     }
 
     public String getYearPublic() {
@@ -33,11 +33,12 @@ public class Material {
     public Material() {
     }
 
-    public Material(String Code, String Tittle, String yearPublic) {
-        this.Code = Code;
-        this.Tittle = Tittle;
+    public Material(String code, String tittle, String yearPublic) {
+        this.code = code;
+        this.tittle = tittle;
         this.yearPublic = yearPublic;
     }
+
     
     
 }
