@@ -8,7 +8,7 @@ package com.mycompany.biblioteca;
  *
  * @author Alejandro
  */
-public class Libro extends Material{
+public class Book extends Material{
     private String author;
     private boolean available;
 
@@ -28,11 +28,11 @@ public class Libro extends Material{
         this.available = available;
     }
 
-    public Libro() {
+    public Book() {
         super();
     }
 
-    public Libro(String author, boolean available, String Code, String Tittle, String yearPublic) {
+    public Book(String author, boolean available, String Code, String Tittle, String yearPublic) {
         super(Code, Tittle, yearPublic);
         this.author = author;
         this.available = available;
