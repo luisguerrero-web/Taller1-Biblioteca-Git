@@ -36,4 +36,17 @@ public class Client extends Person{
         System.out.println("Cliente creado exitosamente");
     }
     
+    public void SEARCHCLIENT(){
+        if (listClients.isEmpty()){
+            System.out.println("No hay clientes registrados");
+        }else{
+            System.out.println("Lista de clientes: ");
+            for(Client client : listClients){
+                System.out.println("Id: "+client.getId());
+                System.out.println("Nombre: "+client.getName());
+                System.out.println("TElefono: "+client.getPhone());
+                System.out.println("Email: "+client.getEmail());
+            }
+        }
+    }
 }
