@@ -31,38 +31,5 @@ public class Client extends Person{
         this.email = email;
     }
     
-    public void CREATE(Client client) {
-        listClients.add(client);
-        System.out.println("Cliente creado exitosamente");
-    }
     
-    public Client READ(int searchedId){
-        for (Client client : listClients) {
-            if (searchedId == client.getId()) {
-                return client;
-            }
-        }
-        System.out.println("Cliente no encontrado");
-        return null;
-    }
-    
-    public void UPDATE(int actualId, int newId){
-        Client client = READ(actualId);
-        if (client != null) {
-            client.setId(newId);
-            System.out.println("Cliente actualizado correctamente");
-        } else {
-            System.out.println("No se pudo actualizar porque el cliente no existe");
-        }
-    }
-    
-    public void DELETE(int deletedId){
-        Client client = READ(deletedId);
-        if (client != null){
-            listClients.remove(client);
-            System.out.println("Cliente eliminado correctamente");
-        }else{
-            System.out.println("No se pudo eliminar porque el cliente no existe");
-        }
-    }
 }
