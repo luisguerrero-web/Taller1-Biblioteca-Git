@@ -55,4 +55,14 @@ public class Client extends Person{
             System.out.println("No se pudo actualizar porque el cliente no existe");
         }
     }
+    
+    public void DELETE(int deletedId){
+        Client client = READ(deletedId);
+        if (client != null){
+            listClients.remove(client);
+            System.out.println("Cliente eliminado correctamente");
+        }else{
+            System.out.println("No se pudo eliminar porque el cliente no existe");
+        }
+    }
 }
