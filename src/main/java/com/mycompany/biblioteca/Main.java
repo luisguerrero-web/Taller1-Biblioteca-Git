@@ -14,13 +14,4 @@ public class Main {
         System.out.println("Aquí va el menú (fase 8)");
     }
     
-    void CREATE(){
-        System.out.println("Registrar nuevo cliente");
-        System.out.println("Ingrese el email: ");
-        String email = sc.nextLine();
-        
-        Client nuevoCliente = new Client(email);
-        clients.add(nuevoCliente);
-    }
-    
 }

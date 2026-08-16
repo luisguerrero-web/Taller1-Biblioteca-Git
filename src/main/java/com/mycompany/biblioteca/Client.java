@@ -4,14 +4,19 @@
  */
 package com.mycompany.biblioteca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Alejandro
  */
-public class Client {
+public class Client extends Person{
     private String email;
+    private List<Client> listClients;
 
     public Client() {
+        this.listClients = new ArrayList<>();
     }
 
     public Client(String email) {
@@ -26,5 +31,9 @@ public class Client {
         this.email = email;
     }
     
+    public void CREATE(Client client) {
+        listClients.add(client);
+        System.out.println("Cliente creado exitosamente");
+    }
     
 }
