@@ -36,17 +36,23 @@ public class Client extends Person{
         System.out.println("Cliente creado exitosamente");
     }
     
-    public void SEARCHCLIENT(){
-        if (listClients.isEmpty()){
-            System.out.println("No hay clientes registrados");
-        }else{
-            System.out.println("Lista de clientes: ");
-            for(Client client : listClients){
-                System.out.println("Id: "+client.getId());
-                System.out.println("Nombre: "+client.getName());
-                System.out.println("TElefono: "+client.getPhone());
-                System.out.println("Email: "+client.getEmail());
+    public Client READ(int searchedId){
+        for (Client client : listClients) {
+            if (searchedId == client.getId()) {
+                return client;
             }
+        }
+        System.out.println("Cliente no encontrado");
+        return null;
+    }
+    
+    public void UPDATE(int actualId, int newId){
+        Client client = READ(actualId);
+        if (client != null) {
+            client.setId(newId);
+            System.out.println("Cliente actualizado correctamente");
+        } else {
+            System.out.println("No se pudo actualizar porque el cliente no existe");
         }
     }
 }
