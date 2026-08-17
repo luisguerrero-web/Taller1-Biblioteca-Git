@@ -11,22 +11,28 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Aquí va el menú (fase 8)");
+        System.out.println("aquí va el menú (fase 8)");
     }
 
     public static void createClient(Client client) {
         clients.add(client);
-        System.out.println("Cliente creado exitosamente");
+        System.out.println("cliente creado exitosamente");
     }
     
     public static void createBook(Book book) {
         books.add(book);
-        System.out.println("Libro creado exitosamente");
+        System.out.println("libro creado exitosamente");
     }
     
     public static void createLoan(Loan loan) {
-        loans.add(loan);
-        System.out.println("Libro creado exitosamente");
+        if (loan.getBook().isAvailable()) {
+            loan.getBook().setAvailable(false);
+            loan.setStatus("activo");
+            loans.add(loan);
+            System.out.println("prestamo creado exitosamente");
+        } else {
+            System.out.println("no se pudo crear el prestamo");
+        }
     }
     
     public static Client readClient(int searchedId){
@@ -35,7 +41,7 @@ public class Main {
                 return client;
             }
         }
-        System.out.println("Cliente no encontrado");
+        System.out.println("cliente no encontrado");
         return null;
     }
     
@@ -45,21 +51,30 @@ public class Main {
                 return book;
             }
         }
-        System.out.println("Libro no encontrado");
+        System.out.println("libro no encontrado");
         return null;
     }
     
     public static void listBook(){
-        
+        if (books.isEmpty()) {
+            System.out.println("no hay libros registrados");
+        } else {
+            System.out.println("lista de libros:");
+            for (Book book : books) {
+                System.out.println("Código: " + book.getCode() + 
+                                   " | Título: " + book.getTittle() + 
+                                   " | Disponible: " + (book.isAvailable() ? "Sí" : "No"));
+            }
+        }
     }
     
     public static void updateClient(int actualId, int newId){
         Client client = readClient(actualId);
         if (client != null) {
             client.setId(newId);
-            System.out.println("Cliente actualizado correctamente");
+            System.out.println("cliente actualizado correctamente");
         } else {
-            System.out.println("No se pudo actualizar porque el cliente no existe");
+            System.out.println("no se pudo actualizar porque el cliente no existe");
         }
     }
     
@@ -67,9 +82,9 @@ public class Main {
         Book book = readBook(actualCode);
         if (book != null) {
             book.setCode(newCode);
-            System.out.println("Libro actualizado correctamente");
+            System.out.println("libro actualizado correctamente");
         } else {
-            System.out.println("No se pudo actualizar porque el Libro no existe");
+            System.out.println("no se pudo actualizar porque el Libro no existe");
         }
     }
     
@@ -77,9 +92,9 @@ public class Main {
         Client client = readClient(deletedId);
         if (client != null){
             clients.remove(client);
-            System.out.println("Cliente eliminado correctamente");
+            System.out.println("cliente eliminado correctamente");
         }else{
-            System.out.println("No se pudo eliminar porque el cliente no existe");
+            System.out.println("no se pudo eliminar porque el cliente no existe");
         }
     }
     
@@ -87,9 +102,32 @@ public class Main {
         Book book = readBook(deletedCode);
         if (book != null){
             books.remove(book);
-            System.out.println("Libro eliminado correctamente");
+            System.out.println("libro eliminado correctamente");
         }else{
-            System.out.println("No se pudo eliminar porque el Libro no existe");
+            System.out.println("no se pudo eliminar porque el libro no existe");
+        }
+    }
+    
+    public static void devolution(String returnedBookCode){
+        Book book = readBook(returnedBookCode);
+        if (book != null) {
+            boolean activeLoanFound = false;
+            for (Loan loan : loans) {
+                if (loan.getBook().getCode().equals(returnedBookCode) && "activo".equalsIgnoreCase(loan.getStatus())) {
+                    loan.setStatus("devuelto");
+                    activeLoanFound = true;
+                    break;
+                }
+            }
+            if (activeLoanFound) {
+                book.setAvailable(true);
+                System.out.println("devolucion procesada correctamente");
+            } else {
+                System.out.println("el libro existe, pero no tiene un prestamo activo");
+            }
+            
+        } else {
+            System.out.println("este libro no existe en el sistema");
         }
     }
 }
