@@ -3,7 +3,7 @@ package com.mycompany.biblioteca;
 
 import java.time.LocalDate;
 
-public class loan {
+public class Loan {
     private String loanId;
     private Client client;
     private Book book;
@@ -50,10 +50,10 @@ public class loan {
         this.status = status;
     }
 
-    public loan() {
+    public Loan() {
     }
 
-    public loan(String loanId, Client client, Book book, LocalDate date, String status) {
+    public Loan(String loanId, Client client, Book book, LocalDate date, String status) {
         this.loanId = loanId;
         this.client = client;
         this.book = book;

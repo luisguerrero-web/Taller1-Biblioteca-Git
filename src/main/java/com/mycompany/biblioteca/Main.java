@@ -7,6 +7,7 @@ public class Main {
     
     static ArrayList<Client> clients = new ArrayList<>();
     static ArrayList<Book> books = new ArrayList<>();
+    static ArrayList<Loan> loans = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -20,6 +21,11 @@ public class Main {
     
     public static void createBook(Book book) {
         books.add(book);
+        System.out.println("Libro creado exitosamente");
+    }
+    
+    public static void createLoan(Loan loan) {
+        loans.add(loan);
         System.out.println("Libro creado exitosamente");
     }
     
