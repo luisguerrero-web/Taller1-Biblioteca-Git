@@ -61,9 +61,24 @@ public class Main {
         } else {
             System.out.println("lista de libros:");
             for (Book book : books) {
-                System.out.println("Código: " + book.getCode() + 
-                                   " | Título: " + book.getTittle() + 
+                System.out.println("Codigo: " + book.getCode() + 
+                                   " | Titulo: " + book.getTittle() + 
                                    " | Disponible: " + (book.isAvailable() ? "Sí" : "No"));
+            }
+        }
+    }
+    
+    public static void listLoans(){
+        if (loans.isEmpty()) {
+            System.out.println("no hay prestamos registrados");
+        } else {
+            System.out.println("lista de prestamos:");
+            for (Loan loan : loans) {
+                System.out.println("Id del prestamo: " + loan.getLoanId() + 
+                                   " | Cliente: " + loan.getClient().getName() + 
+                                   " | Libro: " + loan.getBook().getTittle() +
+                                   " | Fecha: " + loan.getDate() +
+                                   " | Estado: " + loan.getStatus());
             }
         }
     }
