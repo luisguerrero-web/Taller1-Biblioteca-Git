@@ -11,7 +11,164 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("aquí va el menú (fase 8)");
+        int option = -1;
+
+        do {
+            System.out.println("\nSISTEMA DE GESTION BIBLIOTECA ");
+            System.out.println("=================================");
+            System.out.println("--- MENU DE CLIENTES ---");
+            System.out.println("1. Crear Cliente");
+            System.out.println("2. Buscar Cliente");
+            System.out.println("3. Actualizar ID de Cliente");
+            System.out.println("4. Eliminar Cliente");
+            System.out.println("--- MENU DE LIBROS ---");
+            System.out.println("5. Crear Libro");
+            System.out.println("6. Buscar Libro");
+            System.out.println("7. Listar Libros");
+            System.out.println("8. Actualizar Código de Libro");
+            System.out.println("9. Eliminar Libro");
+            System.out.println("--- MENU DE PRÉSTAMOS ---");
+            System.out.println("10. Registrar Préstamo");
+            System.out.println("11. Listar Préstamos");
+            System.out.println("12. Registrar Devolución");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            try {
+                option =sc.nextInt();
+                sc.nextLine();
+
+                switch (option) {
+                    case 1:
+                        System.out.println("\n--- CREAR CLIENTE ---");
+                        System.out.print("Ingrese el id: ");
+                        int clientId = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Ingrese  el nombre: ");
+                        String clientName = sc.nextLine();
+                        System.out.print("Ingrese el telefono: ");
+                        String clientPhone= sc.nextLine();
+                        System.out.print("Ingrese el email: ");
+                        String clientEmail=sc.nextLine();
+                        Client newClient= new Client();
+                        newClient.setId(clientId);
+                        newClient.setName(clientName);
+                        newClient.setPhone(clientPhone);
+                        newClient.setEmail(clientEmail);
+                        createClient(newClient);
+                        break;
+                    case 2:
+                        System.out.print("\nIngrese el id del cliente a buscar: ");
+                        int searchClientId =sc.nextInt();
+                        sc.nextLine();
+                        Client foundClient =readClient(searchClientId);
+                        if (foundClient != null) {
+                            System.out.println("Cliente encontrado: " + foundClient.getName() + " | Email: " + foundClient.getEmail());
+                        }
+                        break;
+                    case 3:
+                        System.out.print("\nIngrese el id actual del cliente: ");
+                        int currentId = sc.nextInt();
+                        System.out.print("Ingrese el nuevo id: ");
+                        int newId = sc.nextInt();
+                        sc.nextLine();
+                        updateClient(currentId, newId);
+                        break;
+                    case 4:
+                        System.out.print("\nIngrese el id del cliente a eliminar: ");
+                        int deleteClientId = sc.nextInt();
+                        sc.nextLine();
+                        deleteClient(deleteClientId);
+                        break;
+                    case 5:
+                        System.out.println("\n--- CREAR LIBRO ---");
+                        System.out.print("Ingrese el codigo del libro: ");
+                        String bookCode = sc.nextLine();
+                        System.out.print("Ingrese el titulo del libro: ");
+                        String bookTitle = sc.nextLine();
+                        System.out.print("Ingrese el autor: ");
+                        String bookAuthor = sc.nextLine();
+                        System.out.print("Ingrese el anio de publicacion: ");
+                        String yearPublic = sc.nextLine();
+                        Book newBook = new Book();
+                        newBook.setCode(bookCode);
+                        newBook.setTittle(bookTitle);
+                        newBook.setAuthor(bookAuthor);
+                        newBook.setYearPublic(yearPublic);
+                        newBook.setAvailable(true);
+                        createBook(newBook);
+                        break;
+                    case 6:
+                        System.out.print("\nIngrese el codigo del libro a buscar: ");
+                        String searchCode = sc.nextLine();
+                        Book foundBook = readBook(searchCode);
+                        if (foundBook != null) {
+                            System.out.println("Libro encontrado: " + foundBook.getTittle() + " | Autor: " + foundBook.getAuthor());
+                        }
+                        break;
+                    case 7:
+                        System.out.println();
+                        listBook();
+                        break;
+                    case 8:
+                        System.out.print("\nIngrese codigo actual del libro: ");
+                        String currentCode = sc.nextLine();
+                        System.out.print("Ingrese el nuevo Código: ");
+                        String newCode = sc.nextLine();
+                        updateBook(currentCode, newCode);
+                        break;
+                    case 9:
+                        System.out.print("\nIngrese codigo del libro a eliminar: ");
+                        String deleteBookCode = sc.nextLine();
+                        deleteBook(deleteBookCode);
+                        break;
+                    case 10:
+                        System.out.println("\n--- REGISTRAR PRÉSTAMO ---");
+                        System.out.print("Ingrese ID del préstamo: ");
+                        String loanId = sc.nextLine();
+                        System.out.print("Ingrese ID del cliente: ");
+                        int loanClientId = sc.nextInt();
+                        sc.nextLine();
+                        Client loanClient = readClient(loanClientId);
+                        if (loanClient == null) {
+                            System.out.println("No se puede realizar el préstamo sin un cliente válido.");
+                            break;
+                        }
+                        System.out.print("Ingrese Código del libro a prestar: ");
+                        String loanBookCode = sc.nextLine();
+                        Book loanBook = readBook(loanBookCode);
+                        if (loanBook == null) {
+                            System.out.println("No se puede realizar el prestamo sin un libro valido.");
+                            break;
+                        }
+                        Loan newLoan = new Loan();
+                        newLoan.setLoanId(loanId);
+                        newLoan.setClient(loanClient);
+                        newLoan.setBook(loanBook);
+                        newLoan.setDate(java.time.LocalDate.now());
+                        createLoan(newLoan);
+                        break;
+                    case 11:
+                        System.out.println();
+                        listLoans();
+                        break;
+                    case 12:
+                        System.out.print("\nIngrese el codigo del libro a devolver: ");
+                        String returnCode = sc.nextLine();
+                        devolution(returnCode);
+                        break;
+                    case 0:
+                        System.out.println("\nSaliendo del programa");
+                        break;
+                    default:
+                        System.out.println("\nOpcion no valida, intente otra vez");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error: Por favor ingrese un dato válido.");
+                sc.nextLine();
+            }
+        } while (option != 0);
     }
 
     public static void createClient(Client client) {
