@@ -17,22 +17,22 @@ public class Main {
             System.out.println("\nSISTEMA DE GESTION BIBLIOTECA ");
             System.out.println("=================================");
             System.out.println("--- MENU DE CLIENTES ---");
-            System.out.println("1. Crear Cliente");
-            System.out.println("2. Buscar Cliente");
-            System.out.println("3. Actualizar ID de Cliente");
-            System.out.println("4. Eliminar Cliente");
+            System.out.println("1. Crear cliente");
+            System.out.println("2. Buscar al cliente");
+            System.out.println("3. Actualizar id del cliente");
+            System.out.println("4. Eliminar al cliente");
             System.out.println("--- MENU DE LIBROS ---");
-            System.out.println("5. Crear Libro");
-            System.out.println("6. Buscar Libro");
-            System.out.println("7. Listar Libros");
-            System.out.println("8. Actualizar Código de Libro");
-            System.out.println("9. Eliminar Libro");
-            System.out.println("--- MENU DE PRÉSTAMOS ---");
-            System.out.println("10. Registrar Préstamo");
-            System.out.println("11. Listar Préstamos");
-            System.out.println("12. Registrar Devolución");
+            System.out.println("5. Crear libro");
+            System.out.println("6. Buscar libro");
+            System.out.println("7. Listar libros");
+            System.out.println("8. Actualizar codigo de libro");
+            System.out.println("9. Eliminar libro");
+            System.out.println("--- MENU DE PRESTAMOS ---");
+            System.out.println("10. Registrar prestamo");
+            System.out.println("11. Listar prestamos");
+            System.out.println("12. Registrar devolucion");
             System.out.println("0. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.print("Seleccione una opcion: ");
 
             try {
                 option =sc.nextInt();
@@ -113,7 +113,7 @@ public class Main {
                     case 8:
                         System.out.print("\nIngrese codigo actual del libro: ");
                         String currentCode = sc.nextLine();
-                        System.out.print("Ingrese el nuevo Código: ");
+                        System.out.print("Ingrese el nuevo codigo: ");
                         String newCode = sc.nextLine();
                         updateBook(currentCode, newCode);
                         break;
@@ -123,18 +123,18 @@ public class Main {
                         deleteBook(deleteBookCode);
                         break;
                     case 10:
-                        System.out.println("\n--- REGISTRAR PRÉSTAMO ---");
-                        System.out.print("Ingrese ID del préstamo: ");
+                        System.out.println("\n--- REGISTRAR PRESTAMO ---");
+                        System.out.print("Ingrese el id del prestamo: ");
                         String loanId = sc.nextLine();
                         System.out.print("Ingrese ID del cliente: ");
                         int loanClientId = sc.nextInt();
                         sc.nextLine();
                         Client loanClient = readClient(loanClientId);
                         if (loanClient == null) {
-                            System.out.println("No se puede realizar el préstamo sin un cliente válido.");
+                            System.out.println("No se puede realizar el préstamo sin un cliente valido.");
                             break;
                         }
-                        System.out.print("Ingrese Código del libro a prestar: ");
+                        System.out.print("Ingrese codigo del libro a prestar: ");
                         String loanBookCode = sc.nextLine();
                         Book loanBook = readBook(loanBookCode);
                         if (loanBook == null) {
@@ -165,7 +165,7 @@ public class Main {
                 }
 
             } catch (Exception e) {
-                System.out.println("Error: Por favor ingrese un dato válido.");
+                System.out.println("Error: Por favor ingrese un dato valido.");
                 sc.nextLine();
             }
         } while (option != 0);
